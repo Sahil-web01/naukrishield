@@ -18,7 +18,7 @@ export const analyzeText = async (req, res) => {
       });
     }
 
-    const result = analyzeJobMessage(text);
+    const result = await analyzeJobMessage(text);
 
     // Save scan to database if connected
     if (getDBStatus()) {

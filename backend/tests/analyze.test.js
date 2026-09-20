@@ -28,25 +28,25 @@ test('TF-IDF Scorer scores high-risk text above threshold and extracts key indic
   assert.ok(score.top_indicators.length > 0, 'Should contain top indicators');
 });
 
-test('Hybrid Analyzer returns INSUFFICIENT_INFO for input shorter than 15 chars', () => {
-  const result = analyzeJobMessage('Hi there');
+test('Hybrid Analyzer returns INSUFFICIENT_INFO for input shorter than 15 chars', async () => {
+  const result = await analyzeJobMessage('Hi there');
   assert.equal(result.risk_category, 'INSUFFICIENT_INFO');
   assert.equal(result.risk_score, 0.0);
   assert.ok(result.next_steps.length > 0);
 });
 
-test('Hybrid Analyzer correctly classifies high-risk scam message', () => {
+test('Hybrid Analyzer correctly classifies high-risk scam message', async () => {
   const scamText = 'Selected for Data Entry role. Salary Rs 35,000. No interview required. Pay Rs 1,999 registration fee via GPay within 2 hours.';
-  const result = analyzeJobMessage(scamText);
+  const result = await analyzeJobMessage(scamText);
   assert.equal(result.risk_category, 'HIGH');
   assert.ok(result.risk_score >= 0.8);
   assert.ok(result.evidence_spans.length >= 2);
   assert.ok(result.limitations.length > 0);
 });
 
-test('Hybrid Analyzer classifies authentic interview invitation as LOW risk', () => {
+test('Hybrid Analyzer classifies authentic interview invitation as LOW risk', async () => {
   const legitText = 'Thank you for applying for Frontend Engineer at Acme. We reviewed your GitHub and invite you to a 45-minute Google Meet interview. Acme never asks for any money.';
-  const result = analyzeJobMessage(legitText);
+  const result = await analyzeJobMessage(legitText);
   assert.equal(result.risk_category, 'LOW');
   assert.ok(result.risk_score < 0.35);
 });

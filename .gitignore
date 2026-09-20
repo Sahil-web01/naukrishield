@@ -1,0 +1,30 @@
+# Python environments and cache
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Frontend dependencies and build output
+node_modules/
+dist/
+build/
+
+# Local credentials
+.env
+.env.*
+!.env.example
+
+# Dataset files stay local
+ml/data/*
+!ml/data/.gitkeep
+!ml/data/README.md
+
+# Temporary experiment files
+*.log
+*.db
+*.db-journal
+
+# Operating system files
+.DS_Store
+Thumbs.db

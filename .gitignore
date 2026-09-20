@@ -28,3 +28,25 @@ ml/data/*
 # Operating system files
 .DS_Store
 Thumbs.db
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Environments
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / IDE
+.DS_Store
+.vscode/
+
+# Temporary archives
+*.zip
+
+# Logs
+*.log
